@@ -60,7 +60,7 @@ $ sh docker-destroy.sh
 
 - https://hub.docker.com/
 - 検索して自分の欲しいイメージを探す
-  - 素のLinuxOSイメージ(CentOS, Ubuntu...)
+  - 素のLinuxOSイメージ(CentOS, Ubuntu, Alpine...)
   - 言語やアプリケーション入りイメージ(PHP, Ruby, Nginx, MySQL...)
   - Docker社作成の公式イメージとそれ以外の人が作った非公式イメージがある(誰でもアップできる)
 
@@ -182,7 +182,59 @@ $ docker rmi イメージ名:タグ
   - 「手順書」なので後で見直した時にインフラ構成が分かる
     - Infrastracture as Code と言ったりするらしい
 
-### HelloWorld
+### コンソールでHelloWorld
+
+~~~
+$ cd ~/
+$ mkdir my-docker-test
+$ cd my-docker-test
+$ mkdir hello
+$ touch hello/Dockerfile
+~~~
+
+- 作成したDockerfileを任意のエディタで編集
+- 今回のハンズオンではAlpineイメージを使っていきます
+  - Alpine?→超軽量のLinuxディストリビューション
+  - 軽いのでpullが早い
+  - bashじゃなくてsh(bashのパッケージインスールは可)
+  - パッケージインストールは「apk」コマンド
+
+~~~
+FROM alpine:latest
+
+ENTRYPOINT ["echo", "HelloWorld"]
+~~~
+
+- 編集して保存したらイメージビルドする
+- docker build コマンド
+
+~~~
+$ docker build -t イメージ名:タグ(任意) Dockerfileの入ったディレクトリ名
+~~~
+
+~~~
+$ pwd
+~/my-docker-test
+$ docker build -t hello:latest hello
+$ docker run hello
+~~~
+
+- HelloWorldが出力されたら成功
+
+### Dockerfileコマンド
+
+| Left align | Right align | Center align |
+|:-----------|------------:|:------------:|
+| This       |        This |     This     |
+| column     |      column |    column    |
+| will       |        will |     will     |
+| be         |          be |      be      |
+| left       |       right |    center    |
+| aligned    |     aligned |   aligned    |
+
+
+
+### ブラウザでHelloWorld
 
 ## 参考
 
