@@ -25,7 +25,11 @@ $ docker-compose up -d
 
 ### 動作確認
 
-[localhost:8000](http://localhost:8080)
+ブラウザで以下をアドレスバーに入力
+
+~~~
+localhost:8000
+~~~
 
 
 ## 参考
