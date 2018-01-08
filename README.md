@@ -242,7 +242,44 @@ $ docker run hello
 
 ### その2 ブラウザでHelloWorld
 
+~~~
+$ pwd
+~/my-docker-test
+$ mkdir hello-nginx
+$ touch hello-nginx/Dockerfile
+~~~
 
+- Dockerfile
+
+~~~
+FROM nginx:alpine
+
+ADD index.html /usr/share/nginx/index.html
+
+ENTRYPOINT nginx
+~~~
+
+- index.html
+
+~~~
+<!DOCTYPE HTML>
+<html>
+    <head>
+    </head>
+    <body>
+        HelloWorld
+    </body>
+</html>
+~~~
+
+- 配置
+
+~~~sequence
+WEBサーバ->DBサーバ: データ挿入
+Note right of DBサーバ: DataBaseには\nユーザデータが\n格納される
+DBサーバ-->WEBサーバ: データ参照
+WEBサーバ->>DBサーバ: データ更新
+~~~
 
 ## 参考
 
