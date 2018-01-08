@@ -43,6 +43,147 @@ localhost:8000
 - データベースのホスト名: mysql
 - テーブル接頭辞: wp_
 
+### Dockerイメージ, コンテナ, ネットワーク全部消す
+
+- PC内のDockerイメージ, コンテナ, ネットワークが全て消える
+- すでにDockerユーザの方は注意して下さい
+
+~~~
+$ pwd
+~/start-docker-wp
+$ sh docker-destroy.sh
+~~~
+
+## 他にも試してみる
+
+### DockerHub
+
+- https://hub.docker.com/
+- 検索して自分の欲しいイメージを探す
+  - 素のLinuxOSイメージ(CentOS, Ubuntu...)
+  - 言語やアプリケーション入りイメージ(PHP, Ruby, Nginx, MySQL...)
+  - エトセトラ
+
+### よく使うDockerコマンド, オプション
+
+#### (非常に)ざっくりとした説明
+
+- まずイメージを取ってくる
+- イメージからコンテナを作る
+- たい焼きの例え(雑)
+  - イメージ=たい焼き機
+  - コンテナ=たい焼き
+
+#### イメージを取ってくる
+
+~~~
+$ docker pull イメージ名
+~~~
+
+~~~
+$ docker pull centos:7 
+~~~
+
+#### イメージからコンテナを作って動かす
+
+- 単に作って動かす
+
+~~~
+$ docker run -d イメージ名
+~~~
+
+~~~
+$ docker run -d -p 8000:80 httpd:alpine
+~~~
+
+- 作って動かしつつ中に入る
+
+~~~
+$ docker run -ti イメージ名 sh(or bash or etc...)
+~~~
+
+~~~
+$ docker run -ti centos:7 bash
+$ docker run -ti alpine:latest sh
+~~~
+
+- 動いてるコンテナを確認する
+
+~~~
+$ docker ps
+~~~
+
+- (動いてないコンテナを含めた)すべてのコンテナを確認する
+
+~~~
+$ docker ps -a
+~~~
+
+- すでに動いてるコンテナに入る
+
+~~~
+$ docker exec -ti コンテナ名(or コンテナID) sh(or bash or etc...)
+~~~
+
+~~~
+$ docker run --name orenomysql -d -e MYSQL_ROOT_PASSWORD=password mysql:5.7
+$ docker exec -ti orenomysql bash
+# mysql -uroot -ppassword
+~~~
+
+~~~
+$ docker run --name bokunomysql -d -e MYSQL_ROOT_PASSWORD=password mysql:5.7
+$ docker exec -ti bokunomysql mysql -uroot -ppassword
+~~~
+
+#### コンテナの保存
+
+- コンテナは保存できない(消えると原状復帰できない)
+- docker commit コマンドでイメージにして保存する
+  - docker push コマンドでクラウド(DockerHubなど)に上げることもできる(今日は触れません)
+
+~~~
+$ docker commit コンテナ名(or コンテナID) イメージ名:タグ(任意に命名)
+~~~
+
+- PC入ってるイメージ一覧を確認する
+
+~~~
+$ docker images
+~~~
+
+#### 停止, 削除コマンド
+
+- コンテナ停止
+
+~~~
+$ docker stop コンテナ名(or コンテナID)
+~~~
+
+- コンテナ削除
+
+~~~
+$ docker rm コンテナ名(or コンテナID)
+~~~
+
+- イメージ削除
+
+~~~
+$ docker rmi イメージ名:タグ
+~~~
+
+## Dockerfileを書いてみる
+
+### Dockerfile?
+
+- (非常にざっくり説明すると)「動く手順書」
+  - 「動く」「手順書」
+  - 「動く」ので待ってるだけで環境構築が終わるので楽
+  - 「手順書」なので後で見直した時にインフラ構成が分かる
+    - Infrastracture as Code と言ったりするらしい
+
+### HelloWorld
+
 ## 参考
 
 - https://tech.recruit-mp.co.jp/infrastructure/post-13086/
