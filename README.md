@@ -25,7 +25,7 @@ $ docker-compose up -d
 
 ### 動作確認
 
-[localhost:8000](localhost:8080)
+[localhost:8000](http://localhost:8080)
 
 
 ## 参考
