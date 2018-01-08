@@ -14,7 +14,7 @@
 
 - https://qiita.com/zoe302/items/307327da5c75628daadb
 
-## とりあえずDockerでWPを動かしてみる
+## とりあえずDockerでWPを構築してみる
 
 ### Dockerコンテナ群の立ち上げと連携
 
@@ -27,7 +27,7 @@ $ docker-compose up -d
 
 ### 動作確認
 
-1. ブラウザで以下をアドレスバーに入力
+#### ブラウザで以下をアドレスバーに入力
 
 ~~~
 localhost:8000
@@ -35,7 +35,7 @@ localhost:8000
 
 - 初期設定画面の表示を確認
 
-2. WordPress初期設定
+#### WordPress初期設定
 
 - データベース名: wordpress
 - ユーザー名: root
@@ -182,7 +182,7 @@ $ docker rmi イメージ名:タグ
   - 「手順書」なので後で見直した時にインフラ構成が分かる
     - Infrastracture as Code と言ったりするらしい
 
-### コンソールでHelloWorld
+### その1 コンソールでHelloWorld
 
 ~~~
 $ cd ~/
@@ -223,18 +223,26 @@ $ docker run hello
 
 ### Dockerfileコマンド
 
-| Left align | Right align | Center align |
-|:-----------|------------:|:------------:|
-| This       |        This |     This     |
-| column     |      column |    column    |
-| will       |        will |     will     |
-| be         |          be |      be      |
-| left       |       right |    center    |
-| aligned    |     aligned |   aligned    |
+- よく使うコマンド
+
+|コマンド|概説|
+|:---|:---|
+|FROM|元にするイメージを指定|
+|RUN|sh, bashコマンドを実行|
+|ADD|ファイルをコンテナに注入|
+|COPY|ほぼ同上|
+|ENTRYPOINT|コンテナ起動時に実行するコマンドを指定|
+|CMD|ほぼ同上|
+
+- ほぼ同上が気になる方は調べてみて下さい
+  - そして僕に教えて下さい・・・
+  - 参考になりそうなリンク
+    - https://qiita.com/hihihiroro/items/0956326d6731bc927166
+    - https://qiita.com/YmgchiYt/items/ad7783ab0757f3ffd929
+
+### その2 ブラウザでHelloWorld
 
 
-
-### ブラウザでHelloWorld
 
 ## 参考
 
