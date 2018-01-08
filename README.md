@@ -16,6 +16,8 @@ https://qiita.com/zoe302/items/307327da5c75628daadb
 
 ## とりあえず動かしてみる
 
+### Dockerコンテナ群の立ち上げと連携
+
 ~~~
 $ cd ~/
 $ git clone https://github.com/daioyoshikawa/hkkb-180109-start-docker.git start-docker-wp
@@ -31,7 +33,7 @@ $ docker-compose up -d
 localhost:8000
 ~~~
 
-初期設定画面の表示を確認
+- 初期設定画面の表示を確認
 
 2. WordPress初期設定
 
