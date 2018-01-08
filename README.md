@@ -172,7 +172,7 @@ $ docker rm コンテナ名(or コンテナID)
 $ docker rmi イメージ名:タグ
 ~~~
 
-## 自分でイメージを作ってみる――Dockerfile入門
+## 自分でイメージを作ってみる――Dockerfile, DockerCompose入門
 
 ### Dockerfile?
 
@@ -247,6 +247,7 @@ $ pwd
 ~/my-docker-test
 $ mkdir hello-nginx
 $ touch hello-nginx/Dockerfile
+$ touch hello-nginx/index.html
 ~~~
 
 - Dockerfile
@@ -272,14 +273,66 @@ ENTRYPOINT nginx
 </html>
 ~~~
 
-- 配置
+- イメージビルドする
 
-```sequence
-WEBサーバ->DBサーバ: データ挿入
-Note right of DBサーバ: DataBaseには\nユーザデータが\n格納される
-DBサーバ-->WEBサーバ: データ参照
-WEBサーバ->>DBサーバ: データ更新
-```
+~~~
+$ docker build -t hello-nginx hello-nginx
+~~~
+
+- コンテナ起動
+
+~~~
+$ docker run -d -p 8000:80 hello-nginx
+~~~
+
+- ボリュームマウントしてみる
+  - ホスト側の編集がコンテナに反映される
+
+~~~
+$ docker run -v `pwd`/index.html:/usr/share/nginx/index.html -p 8000:80 hello-nginx
+~~~
+
+- docker-compose で起動してみる
+
+~~~
+$ pwd
+~/my-docker-test
+$ touch docker-compose.yml
+~~~
+
+- docker-compose.yml
+
+~~~
+version: '3'
+services:
+  nginx:
+    build:
+      context: ./hello-nginx
+      dockerfile: Dockerfile
+    container_name: hello-nginx
+    volumes:
+      - ./index.html:/usr/share/nginx/index.html
+    ports:
+      - "8000:80"
+~~~
+
+- docker-compose でコンテナ起動
+
+~~~
+$ docker-compose up -d
+~~~
+
+- docker-compose でコンテナ停止
+
+~~~
+$ docker-compose stop
+~~~
+
+- docker-compose でコンテナ削除
+
+~~~
+$ docker-compose down
+~~~
 
 ## 参考
 
