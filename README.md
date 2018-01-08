@@ -289,7 +289,7 @@ $ docker run -d -p 8000:80 hello-nginx
   - ホスト側の編集がコンテナに反映される
 
 ~~~
-$ docker run -v `pwd`/index.html:/usr/share/nginx/index.html -p 8000:80 hello-nginx
+$ docker run -v `pwd`/hello-nginx/index.html:/usr/share/nginx/index.html -p 8000:80 hello-nginx
 ~~~
 
 - docker-compose で起動してみる
@@ -311,7 +311,7 @@ services:
       dockerfile: Dockerfile
     container_name: hello-nginx
     volumes:
-      - ./index.html:/usr/share/nginx/index.html
+      - ./hello-nginx/index.html:/usr/share/nginx/index.html
     ports:
       - "8000:80"
 ~~~
