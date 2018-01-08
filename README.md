@@ -54,7 +54,7 @@ $ pwd
 $ sh docker-destroy.sh
 ~~~
 
-## 他にも試してみる
+## 他にも色々試してみる――Dockerコマンド入門
 
 ### DockerHub
 
@@ -62,7 +62,7 @@ $ sh docker-destroy.sh
 - 検索して自分の欲しいイメージを探す
   - 素のLinuxOSイメージ(CentOS, Ubuntu...)
   - 言語やアプリケーション入りイメージ(PHP, Ruby, Nginx, MySQL...)
-  - エトセトラ
+  - Docker社作成の公式イメージとそれ以外の人が作った非公式イメージがある(誰でもアップできる)
 
 ### よく使うDockerコマンド, オプション
 
@@ -146,7 +146,7 @@ $ docker exec -ti bokunomysql mysql -uroot -ppassword
 $ docker commit コンテナ名(or コンテナID) イメージ名:タグ(任意に命名)
 ~~~
 
-- PC入ってるイメージ一覧を確認する
+- PCに入ってるイメージ一覧を確認する
 
 ~~~
 $ docker images
@@ -172,7 +172,7 @@ $ docker rm コンテナ名(or コンテナID)
 $ docker rmi イメージ名:タグ
 ~~~
 
-## Dockerfileを書いてみる
+## 自分でイメージを作ってみる――Dockerfile入門
 
 ### Dockerfile?
 
