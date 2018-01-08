@@ -2,7 +2,7 @@ FROM nginx:mainline-alpine
 
 # add user and setup nginx
 RUN adduser -D -s /bin/sh -u 1000 dockeruser \
- && sed -i 's/nginx/dockeruser/g' /etc/nginx/nginx.conf
+ && sed -i 's/user\ \ nginx\;/user\ \ dockeruser\;/g' /etc/nginx/nginx.conf
 
 # set server.conf
 ADD server.conf /etc/nginx/conf.d/default.conf
