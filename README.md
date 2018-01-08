@@ -14,7 +14,7 @@
 
 - https://qiita.com/zoe302/items/307327da5c75628daadb
 
-## とりあえず動かしてみる
+## とりあえずDockerでWPを動かしてみる
 
 ### Dockerコンテナ群の立ち上げと連携
 
