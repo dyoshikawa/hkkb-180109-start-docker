@@ -25,6 +25,6 @@ services:
     container_name: wp_mysql
     volumes:
       - ./mysql/var-lib-mysql:/var/lib/mysql
-    env_file: development.env
+    env_file: mysql.env
     ports:
       - "13306:3306"
