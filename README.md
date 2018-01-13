@@ -255,9 +255,7 @@ $ touch hello-nginx/index.html
 ~~~
 FROM nginx:alpine
 
-ADD index.html /usr/share/nginx/index.html
-
-ENTRYPOINT nginx
+ADD index.html /usr/share/nginx/html/index.html
 ~~~
 
 - index.html
@@ -289,7 +287,7 @@ $ docker run -d -p 8000:80 hello-nginx
   - ホスト側の編集がコンテナに反映される
 
 ~~~
-$ docker run -v `pwd`/hello-nginx/index.html:/usr/share/nginx/index.html -p 8000:80 hello-nginx
+$ docker run -v `pwd`/hello-nginx/index.html:/usr/share/nginx/html/index.html -p 8000:80 hello-nginx
 ~~~
 
 - docker-compose で起動してみる
@@ -311,7 +309,7 @@ services:
       dockerfile: Dockerfile
     container_name: hello-nginx
     volumes:
-      - ./hello-nginx/index.html:/usr/share/nginx/index.html
+      - ./hello-nginx/index.html:/usr/share/nginx/html/index.html
     ports:
       - "8000:80"
 ~~~
